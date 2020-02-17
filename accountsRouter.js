@@ -5,6 +5,7 @@ const db = require("./data/dbConfig");
 router.get("/", (req, res) => {
   db.select("*")
     .from("accounts")
+    .limit(req.headers.limit)
     .then(accounts => {
       res.status(200).json(accounts);
     })
