@@ -3,9 +3,11 @@ const router = require("express").Router();
 const db = require("./data/dbConfig");
 
 router.get("/", (req, res) => {
+  console.log(req.headers);
   db.select("*")
     .from("accounts")
     .limit(req.headers.limit)
+    .orderBy(req.headers.order)
     .then(accounts => {
       res.status(200).json(accounts);
     })
